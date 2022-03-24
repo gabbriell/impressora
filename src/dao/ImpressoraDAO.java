@@ -45,6 +45,8 @@ public class ImpressoraDAO {
             processo.add(resultSet.getString(4));
             processo.add(resultSet.getString(5));
             processo.add(resultSet.getString(6));
+            
+            connection.close();
             } else{                
             }
            } catch (Exception e){

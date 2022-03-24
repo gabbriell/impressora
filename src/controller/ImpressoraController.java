@@ -70,12 +70,12 @@ public class ImpressoraController {
         String conteudo = "    ETIQUETA DE PROCESSO   \n\r \n\r"
                 + "NUMERO DO PROCESSO:                            ORIGEM: \n\r"
                 +" "+processo.get(0)+"                        "+processo.get(1)+"\n\r"
-                +"\n\r \n\r "
+                +"\n\r  "
                 +"    REFERÊNCIA:                              RESUMO DO ASSUNTO:  \n\r"
                 +" "+processo.get(2)+"                          "+processo.get(3)+"\n\r"
-                +"\n\r \n\r"
+                +"\n\r"
                 +  "DATA DO PROCESSO:                         DATA DO DOCUMENTO: \n\r"
-                +" "+processo.get(4)+"                                                    "+processo.get(5)+"\n\r"; 
+                +" "+processo.get(4)+"                          "+processo.get(5)+"\n\r"; 
         
         JOptionPane.showMessageDialog(view,"Imprimindo processo Nº: " + conteudo);
              
