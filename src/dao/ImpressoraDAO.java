@@ -29,13 +29,15 @@ public class ImpressoraDAO {
         this.connection = connection;
     }
     
-    public ArrayList<String> select(String posicao1) throws SQLException{
+    public ArrayList<String> selectPosicao1(ArrayList<String> posicao) throws SQLException{
             ArrayList<String> processo = new ArrayList();  
             String sql = "SELECT * FROM `capa_de_processo` WHERE numero_processo = ?";            
-        JOptionPane.showMessageDialog(null,"executei o sql" );
+        //JOptionPane.showMessageDialog(null,"executei o sql" );
            try{
             statement = connection.prepareStatement(sql);
-            statement.setString(1,posicao1);                        
+            
+            
+            statement.setString(1,posicao.get(0));
             
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
@@ -44,16 +46,17 @@ public class ImpressoraDAO {
             processo.add(resultSet.getString(3));
             processo.add(resultSet.getString(4));
             processo.add(resultSet.getString(5));
-            processo.add(resultSet.getString(6));
-            
+            processo.add(resultSet.getString(6));            
             connection.close();
-            } else{                
+            }
+            else{
+                processo.add("campo vazio");
             }
            } catch (Exception e){
-               JOptionPane.showMessageDialog(null, e);
+               JOptionPane.showMessageDialog(null, "Não retornou nada do banco");
+               
            }
         return processo;
             
         }
-        
 }

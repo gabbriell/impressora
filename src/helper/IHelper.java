@@ -14,6 +14,8 @@ public interface IHelper {
     
     public abstract Object obterModelo();
     
+    public abstract String imprimir();
+    
     public abstract void limparTela();
     
 }

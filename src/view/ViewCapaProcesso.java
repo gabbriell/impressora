@@ -49,9 +49,9 @@ public class ViewCapaProcesso extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jTextPosicao1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        jTextPosicao2 = new javax.swing.JTextField();
+        jTextPosicao3 = new javax.swing.JTextField();
+        jTextPosicao4 = new javax.swing.JTextField();
         jButtonImprimir = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
 
@@ -64,17 +64,23 @@ public class ViewCapaProcesso extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Coloque os numeros dos Processos");
 
-        jLabel4.setText("Posi��o 1:");
+        jLabel4.setText("Posição 1:");
 
-        jLabel5.setText("Posi��o 2:");
+        jLabel5.setText("Posição 2:");
 
-        jLabel6.setText("Posi��o 3:");
+        jLabel6.setText("Posição 3:");
 
-        jLabel7.setText("Posi��o 4:");
+        jLabel7.setText("Posição 4:");
 
         jTextPosicao1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextPosicao1ActionPerformed(evt);
+            }
+        });
+
+        jTextPosicao2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextPosicao2ActionPerformed(evt);
             }
         });
 
@@ -119,9 +125,9 @@ public class ViewCapaProcesso extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButtonSair))
                                     .addComponent(jTextPosicao1)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField4))))
+                                    .addComponent(jTextPosicao2)
+                                    .addComponent(jTextPosicao3)
+                                    .addComponent(jTextPosicao4))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -142,15 +148,15 @@ public class ViewCapaProcesso extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextPosicao2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextPosicao3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextPosicao4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonImprimir)
@@ -199,6 +205,10 @@ public class ViewCapaProcesso extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextPosicao1ActionPerformed
 
+    private void jTextPosicao2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPosicao2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextPosicao2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -242,6 +252,30 @@ public class ViewCapaProcesso extends javax.swing.JFrame {
     public void setjTextPosicao1(JTextField jTextPosicao1) {
         this.jTextPosicao1 = jTextPosicao1;
     }
+
+    public JTextField getjTextPosicao2() {
+        return jTextPosicao2;
+    }
+
+    public void setjTextPosicao2(JTextField jTextPosicao2) {
+        this.jTextPosicao2 = jTextPosicao2;
+    }
+
+    public JTextField getjTextPosicao3() {
+        return jTextPosicao3;
+    }
+
+    public void setjTextPosicao3(JTextField jTextPosicao3) {
+        this.jTextPosicao3 = jTextPosicao3;
+    }
+
+    public JTextField getjTextPosicao4() {
+        return jTextPosicao4;
+    }
+
+    public void setjTextPosicao4(JTextField jTextPosicao4) {
+        this.jTextPosicao4 = jTextPosicao4;
+    }
     
     
 
@@ -256,9 +290,9 @@ public class ViewCapaProcesso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextPosicao1;
+    private javax.swing.JTextField jTextPosicao2;
+    private javax.swing.JTextField jTextPosicao3;
+    private javax.swing.JTextField jTextPosicao4;
     // End of variables declaration//GEN-END:variables
 }
