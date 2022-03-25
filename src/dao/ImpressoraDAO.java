@@ -4,7 +4,7 @@
  */
 package dao;
 
-import impressora.Impressao;
+import model.Impressao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,9 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.ImpressoraModel;
-
-
+import model.Processo;
 /**
  *
  * @author gabrielm
@@ -29,34 +27,41 @@ public class ImpressoraDAO {
         this.connection = connection;
     }
     
-    public ArrayList<String> selectPosicao1(ArrayList<String> posicao) throws SQLException{
-            ArrayList<String> processo = new ArrayList();  
+    public Processo selectProcesso(String codigo) {
+           
             String sql = "SELECT * FROM `capa_de_processo` WHERE numero_processo = ?";            
         //JOptionPane.showMessageDialog(null,"executei o sql" );
-           try{
+        Processo processo = new Processo();   
+        try{
             statement = connection.prepareStatement(sql);
             
             
-            statement.setString(1,posicao.get(0));
-            
+            statement.setString(1,codigo);            
             ResultSet resultSet = statement.executeQuery();
+            
+            
+            
             if(resultSet.next()){
-            processo.add(resultSet.getString(1));
-            processo.add(resultSet.getString(2));
-            processo.add(resultSet.getString(3));
-            processo.add(resultSet.getString(4));
-            processo.add(resultSet.getString(5));
-            processo.add(resultSet.getString(6));            
-            connection.close();
+                
+            processo.setNumeroDeProcesso(resultSet.getString(1));
+            processo.setOrigem(resultSet.getString(2));
+            processo.setReferencia(resultSet.getString(3));
+            processo.setResumoDoAssunto(resultSet.getString(4));
+            processo.setDataDoProcesso(resultSet.getString(5));
+            processo.setDataDoDocumento(resultSet.getString(6));                                               
+          
+            
             }
-            else{
-                processo.add("campo vazio");
-            }
+            
            } catch (Exception e){
-               JOptionPane.showMessageDialog(null, "Não retornou nada do banco");
+               JOptionPane.showMessageDialog(null, e);
                
            }
         return processo;
             
         }
+    
+    public void fecharConexao() throws SQLException{
+        connection.close();
+    }
 }

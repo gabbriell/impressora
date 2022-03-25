@@ -6,15 +6,18 @@
 
 package helper;
 
+import java.util.ArrayList;
+import model.Processo;
+
 /**
  *
  * @author gabrielm
  */
 public interface IHelper {
     
-    public abstract Object obterModelo();
+    public abstract ArrayList<Processo> obterCodigosDeProcessosDaView();
     
-    public abstract String imprimir();
+    public abstract String imprimir(ArrayList<Processo> processos);
     
     public abstract void limparTela();
     

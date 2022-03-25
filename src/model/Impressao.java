@@ -1,4 +1,4 @@
-package impressora;
+package model;
 
 import java.util.ArrayList;
 
@@ -17,14 +17,14 @@ import java.util.ArrayList;
 public class Impressao {
     
     private String conteudo1;
-    private ArrayList<String> posicao = new ArrayList();
+    private ArrayList<String> codigosDeProcessos = new ArrayList();
 
     public Impressao(String conteudo1) {
         this.conteudo1 = conteudo1;
     }
 
     public Impressao(ArrayList<String> posicao) {
-        this.posicao = posicao;
+        this.codigosDeProcessos = posicao;
     
     }
     
@@ -34,14 +34,14 @@ public class Impressao {
     
     public void setConteudo1(String conteudo1) {
         this.conteudo1 = conteudo1;
+    }    
+
+    public ArrayList<String> getCodigosDeProcessos() {
+        return codigosDeProcessos;
     }
 
-    public ArrayList<String> getPosicao() {
-        return posicao;
-    }
-
-    public void setPosicao(ArrayList<String> posicao) {
-        this.posicao = posicao;
+    public void setCodigosDeProcessos(ArrayList<String> codigosDeProcessos) {
+        this.codigosDeProcessos = codigosDeProcessos;
     }
     
     

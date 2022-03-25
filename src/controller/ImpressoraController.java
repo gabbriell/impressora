@@ -3,7 +3,7 @@ package controller;
 import dao.ConexaoDAO;
 import dao.ImpressoraDAO;
 import helper.ImpressoraHelper;
-import impressora.Impressao;
+import model.Impressao;
 import java.awt.Desktop;
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
@@ -33,6 +33,7 @@ import javax.print.attribute.standard.MediaSize;
 import javax.print.attribute.standard.MediaSizeName;
 import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.JOptionPane;
+import model.Processo;
 import view.ViewCapaProcesso;
 
 
@@ -45,7 +46,6 @@ public class ImpressoraController {
     
     private final ViewCapaProcesso view;
     private ImpressoraHelper helper;
-    private Impressao posicao;
     private DocAttributeSet hasDoc;
     private ImpressoraDAO impressoraDAO;
     private ConexaoDAO conexao;
@@ -59,12 +59,13 @@ public class ImpressoraController {
     }
     
     public void imprimirCapa() throws FileNotFoundException, SQLException{      
-        posicao = helper.obterModelo();
+        ArrayList<Processo> processos = helper.obterCodigosDeProcessosDaView();
            
         /*   
-        numero de consulota: 520/000.928/22
+        numero de exemplo para consulta: 520/000.928/22
           */   
-        String conteudo = helper.imprimir(posicao); 
+        String conteudo = helper.imprimir(processos); 
+        //impressoraDAO.fecharConexao();
         PrintService[] printService = PrintServiceLookup.lookupPrintServices(DocFlavor.INPUT_STREAM.AUTOSENSE,null);
         PrintService impressoraPadrao = PrintServiceLookup.lookupDefaultPrintService();
         DocFlavor docFlavor = DocFlavor.INPUT_STREAM.AUTOSENSE;
