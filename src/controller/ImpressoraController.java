@@ -32,6 +32,7 @@ import javax.print.attribute.standard.JobName;
 import javax.print.attribute.standard.MediaSize;
 import javax.print.attribute.standard.MediaSizeName;
 import javax.print.attribute.standard.OrientationRequested;
+import javax.swing.GroupLayout;
 import javax.swing.JOptionPane;
 import model.Processo;
 import view.ViewCapaProcesso;
@@ -56,45 +57,23 @@ public class ImpressoraController {
         this.helper = new ImpressoraHelper(view);
         
         
-    }
-    
-    public void imprimirCapa() throws FileNotFoundException, SQLException{      
-        ArrayList<Processo> processos = helper.obterCodigosDeProcessosDaView();
-           
+    }         
         /*   
         numero de exemplo para consulta: 520/000.928/22
           */   
-        String conteudo = helper.imprimir(processos); 
-        //impressoraDAO.fecharConexao();
-        PrintService[] printService = PrintServiceLookup.lookupPrintServices(DocFlavor.INPUT_STREAM.AUTOSENSE,null);
-        PrintService impressoraPadrao = PrintServiceLookup.lookupDefaultPrintService();
-        DocFlavor docFlavor = DocFlavor.INPUT_STREAM.AUTOSENSE;
-        HashDocAttributeSet hashDocAttributeSet = new HashDocAttributeSet();
+       
+    public void imprimirCapa(){ 
         
-        try{
-            InputStream InputStream = new ByteArrayInputStream(conteudo.getBytes());
-            Doc doc = new SimpleDoc(InputStream, docFlavor,hashDocAttributeSet);
-            PrintRequestAttributeSet printRequestAttributeSet = new HashPrintRequestAttributeSet();
-            printRequestAttributeSet.add(new JobName("Capa de processo", null));
-            printRequestAttributeSet.add(OrientationRequested.PORTRAIT);
-            printRequestAttributeSet.add(MediaSizeName.ISO_A4);
-            PrintService printServico = ServiceUI.printDialog(null, 300, 200, printService, impressoraPadrao, docFlavor, printRequestAttributeSet);
-            if(printServico != null){
-                DocPrintJob docPrintJob = printServico.createPrintJob();
-                
-                //mandar imprimir documento
-                docPrintJob.print(doc, printRequestAttributeSet);
-            }
-        } catch (PrintException ex) {
-            JOptionPane.showMessageDialog(view, ex);
-        }
+        ArrayList<Processo> processos = helper.obterCodigosDeProcessosDaView();
+    
+     String processosConsultadosDoBancoDeDados = helper.consultarProcessoNoBancoDeDados(processos); 
         
-        //helper.limparTela();
+        helper.imprimirCapa(processosConsultadosDoBancoDeDados);
         
-      
+        
     
     }
-
+ 
   
     
 }

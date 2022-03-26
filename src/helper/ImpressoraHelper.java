@@ -3,12 +3,28 @@ package helper;
 
 import dao.ConexaoDAO;
 import dao.ImpressoraDAO;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import model.Impressao;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.print.Doc;
+import javax.print.DocFlavor;
+import javax.print.DocPrintJob;
+import javax.print.PrintException;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import javax.print.ServiceUI;
+import javax.print.SimpleDoc;
+import javax.print.attribute.HashDocAttributeSet;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.standard.JobName;
+import javax.print.attribute.standard.MediaSizeName;
+import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.JOptionPane;
 import model.Processo;
 import view.ViewCapaProcesso;
@@ -47,7 +63,7 @@ public class ImpressoraHelper implements IHelper {
         return processos;        
     }
         
-    public String imprimir(ArrayList<Processo> processos){
+    public String consultarProcessoNoBancoDeDados(ArrayList<Processo> processos){
              String conteudo = "";
                        
            // JOptionPane.showMessageDialog(view,"passei aqui " );
@@ -70,7 +86,7 @@ public class ImpressoraHelper implements IHelper {
                   
              
                 
-            conteudo = conteudo + "                ETIQUETA DE PROCESSO   \n\r \n\r"
+            conteudo = conteudo + "                  ETIQUETA DE PROCESSO   \n\r \n\r"
             + "NUMERO DO PROCESSO:                            ORIGEM: \n\r"
             +" "+processo.getNumeroDeProcesso()+"                        "+processo.getOrigem()+"\n\r"
             +"\n\r  "
@@ -81,16 +97,57 @@ public class ImpressoraHelper implements IHelper {
             +" "+processo.getDataDoProcesso()+"                                "+processo.getDataDoDocumento()+"\n\r"; 
                 
                }             
+                 
+        }
             
-        }         
+        try {
+            impressoraDAO.fecharConexao();
+        } catch (SQLException ex) {
+            Logger.getLogger(ImpressoraHelper.class.getName()).log(Level.SEVERE, null, ex);
+          }
         
         JOptionPane.showMessageDialog(view,"Imprimindo processo Nº: " + conteudo);
         return conteudo;
-        }      
+    }
+    
+    public void imprimirCapa(String processosConsultados){      
+        
+        //impressoraDAO.fecharConexao();
+        PrintService[] printService = PrintServiceLookup.lookupPrintServices(DocFlavor.INPUT_STREAM.AUTOSENSE,null);
+        PrintService impressoraPadrao = PrintServiceLookup.lookupDefaultPrintService();
+        DocFlavor docFlavor = DocFlavor.INPUT_STREAM.AUTOSENSE;
+        HashDocAttributeSet hashDocAttributeSet = new HashDocAttributeSet();
+        
+        try{
+            
+            InputStream InputStream = new ByteArrayInputStream(processosConsultados.getBytes());
+            Doc doc = new SimpleDoc(InputStream, docFlavor,hashDocAttributeSet);
+            PrintRequestAttributeSet printRequestAttributeSet = new HashPrintRequestAttributeSet();
+            printRequestAttributeSet.add(new JobName("Capa de processo", null));            
+            printRequestAttributeSet.add(OrientationRequested.PORTRAIT);
+            printRequestAttributeSet.add(MediaSizeName.ISO_A4);
+            
+            PrintService printServico = ServiceUI.printDialog(null, 300, 200, printService, impressoraPadrao, docFlavor, printRequestAttributeSet);
+            if(printServico != null){
+                DocPrintJob docPrintJob = printServico.createPrintJob();
+                
+                //mandar consultarProcessoNoBancoDeDados documento
+                docPrintJob.print(doc, printRequestAttributeSet);
+            }
+        } catch (PrintException ex) {
+            JOptionPane.showMessageDialog(view, ex);
+        }       
+     
+
+    }
     
     @Override
     public void limparTela() {
         view.getjTextPosicao1().setText("");
     }  
+
+   
+    
+    
     
 }

@@ -37,8 +37,7 @@ public class ImpressoraDAO {
             
             
             statement.setString(1,codigo);            
-            ResultSet resultSet = statement.executeQuery();
-            
+            ResultSet resultSet = statement.executeQuery();      
             
             
             if(resultSet.next()){

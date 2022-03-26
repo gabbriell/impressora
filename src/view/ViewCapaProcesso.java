@@ -183,18 +183,9 @@ public class ViewCapaProcesso extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
-        // TODO add your handling code here:
+        this.controller.imprimirCapa();
         
-        
-         try {
-            this.controller.imprimirCapa();
-            
-            // imprimirCupom();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ViewCapaProcesso.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewCapaProcesso.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // imprimirCupom();
     }//GEN-LAST:event_jButtonImprimirActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed

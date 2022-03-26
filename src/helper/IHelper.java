@@ -17,8 +17,12 @@ public interface IHelper {
     
     public abstract ArrayList<Processo> obterCodigosDeProcessosDaView();
     
-    public abstract String imprimir(ArrayList<Processo> processos);
+    public abstract String consultarProcessoNoBancoDeDados(ArrayList<Processo> processos);
     
     public abstract void limparTela();
+    
+    public abstract void imprimirCapa(String processosConsultados);
+    
+    
     
 }
